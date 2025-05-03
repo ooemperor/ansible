@@ -1,4 +1,4 @@
-#gitignore for emplabs.ch
+#gitignore for ansible repository
 
 # IDE Files
 *.idea
