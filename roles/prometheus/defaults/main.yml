@@ -1,0 +1,5 @@
+---
+prometheus_image: prom/prometheus:latest
+prometheus_docker_network: prometheus
+prometheus_local_path: /opt/prometheus
+prometheus_volume_name: emplabs_prometheus_volume

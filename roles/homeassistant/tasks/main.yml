@@ -1,0 +1,10 @@
+---
+- name: Copy Homeassistant config
+  ansible.builtin.import_tasks: config.yml
+  tags:
+    - role::homeassistant
+
+- name: Setup Homeassistant docker
+  ansible.builtin.import_tasks: homeassistant.yml
+  tags:
+    - role::homeassistant

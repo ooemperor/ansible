@@ -1,0 +1,5 @@
+---
+- name: Install Patroni haproxy
+  ansible.builtin.import_tasks: patroni_haproxy_install.yml
+  tags:
+    - 'role::haproxy'

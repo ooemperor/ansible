@@ -1,0 +1,5 @@
+---
+- name: Setup prometheus docker
+  ansible.builtin.import_tasks: prometheus.yml
+  tags:
+    - role::prometheus

@@ -1,0 +1,17 @@
+# Installing Home Assistant
+- name: Run HomeAssistant Docker
+  community.docker.docker_container:
+    name: "{{ homeassistant_docker_name }}"
+    image: "{{ homeassistant_docker_image }}:{{ homeassistant_docker_image_version }}"
+    container_default_behavior: no_defaults
+    recreate: true
+    restart_policy: unless-stopped
+    pull: true
+    network_mode: host
+    volumes:
+      - "{{ homeassistant_local_config_path }}:/config"
+      - "/run/dbus:/run/dbus:ro"
+    env:
+      TZ=Europe/Zurich
+      PUID=0
+      PGID=0

@@ -1,0 +1,13 @@
+---
+- name: Install latest haproxy package
+  ansible.builtin.apt:
+    name:
+      - percona-haproxy
+  notify: Restart haproxy
+
+- name: Copy haproxy config files
+  ansible.builtin.copy:
+    src: files/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    mode: '0755'
+  notify: Restart haproxy
