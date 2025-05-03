@@ -1,0 +1,35 @@
+# Install all the dependencies for helm
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - lsb-release
+      - gnupg
+      - ifenslave
+    state: latest # noqa package-latest
+    update_cache: true
+
+- name: Ensure helm install script is removed
+  ansible.builtin.file:
+    path: /tmp/get_helm.sh
+    state: absent
+
+- name: Fetch the install script # noqa command-instead-of-module no-changed-when
+  ansible.builtin.shell: |
+    curl -fsSL -o /tmp/get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
+- name: Ensure directory exists for /etc/apt/keyrings
+  ansible.builtin.file:
+    path: /tmp/get_helm.sh
+    state: file
+    mode: "0700"
+
+- name: Run helm install script # noqa command-instead-of-module no-changed-when
+  ansible.builtin.shell: |
+    /tmp/get_helm.sh
+
+- name: Ensure helm install script is removed
+  ansible.builtin.file:
+    path: /tmp/get_helm.sh
+    state: absent

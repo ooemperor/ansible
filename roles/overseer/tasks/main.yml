@@ -1,0 +1,5 @@
+---
+- name: Setup overseer docker
+  ansible.builtin.import_tasks: overseer.yml
+  tags:
+    - role::overseer

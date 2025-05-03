@@ -1,0 +1,3 @@
+---
+couchbase_docker_network_name: couchbase
+couchbase_image: couchbase:latest

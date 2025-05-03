@@ -1,0 +1,12 @@
+---
+- name: Install bind9 packages
+  ansible.builtin.import_tasks: bind9_install.yml
+  tags:
+    - dns
+    - role::bind9
+
+- name: Deploy bind9 config.yml
+  ansible.builtin.import_tasks: bind9_config.yml
+  tags:
+    - dns
+    - role::bind9

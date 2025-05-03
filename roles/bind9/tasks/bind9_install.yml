@@ -1,0 +1,13 @@
+---
+- name: Install the bind9 packages
+  ansible.builtin.apt:
+    name:
+      - bind9
+      - bind9utils
+      - bind9-doc
+
+- name: Starting bind9
+  ansible.builtin.service:
+    name: bind9
+    state: started
+    enabled: true

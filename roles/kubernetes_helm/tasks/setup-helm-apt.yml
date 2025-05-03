@@ -1,0 +1,48 @@
+---
+- name: Install apt-transport-https
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - lsb-release
+      - gnupg
+      - ifenslave
+    state: latest # noqa package-latest
+    update_cache: true
+
+- name: Ensure directory exists for /etc/apt/keyrings
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Add Docker apt key.
+  ansible.builtin.get_url:
+    url: "{{ helm_url }}"
+    dest: /tmp/helm-signing.asc
+    mode: "0644"
+    force: false
+
+- name: Convert Helm GPG Key to GPG format
+  ansible.builtin.command:
+    cmd: "gpg --dearmor -o /etc/apt/keyrings/helm.gpg /tmp/helm-signing.asc"
+  args:
+    creates: "/usr/share/keyrings/helm.gpg"
+
+- name: Remove temporary GPG key file
+  ansible.builtin.file:
+    path: "/tmp/helm-signing.asc"
+    state: absent
+
+- name: Add repository into sources list
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.asc] {{ helm_url }} all main"
+    state: present
+    filename: helm
+
+- name: Install Docker
+  ansible.builtin.apt:
+    name:
+      - helm
+    state: latest # noqa package-latest
+    update_cache: true

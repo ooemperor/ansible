@@ -1,0 +1,9 @@
+---
+- name: Install docker with apt
+  ansible.builtin.import_tasks: docker-install.yml
+  tags:
+    - role::docker
+- name: Prune unused items on docker host
+  ansible.builtin.import_tasks: docker-prune.yml
+  tags:
+    - role::docker

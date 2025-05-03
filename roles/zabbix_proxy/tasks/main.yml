@@ -1,0 +1,10 @@
+---
+- name: Setup zabbix_proxy
+  ansible.builtin.import_tasks: zabbix-proxy.yml
+  tags:
+    - role::zabbix_proxy
+
+- name: Setup zabbix_proxy config
+  ansible.builtin.import_tasks: zabbix-proxy-config.yml
+  tags:
+    - role::zabbix_proxy

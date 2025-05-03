@@ -1,0 +1,14 @@
+---
+- name: Mount sab paths
+  ansible.builtin.import_tasks: sab_mount.yml
+  tags:
+    - 'role::sab'
+    - 'role::sabnzb'
+    - 'role::sabnzbdplus'
+
+- name: Setup sab docker
+  ansible.builtin.import_tasks: sab_docker.yml
+  tags:
+    - 'role::sab'
+    - 'role::sabnzb'
+    - 'role::sabnzbdplus'

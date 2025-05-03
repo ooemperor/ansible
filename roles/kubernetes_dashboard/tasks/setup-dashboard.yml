@@ -1,0 +1,16 @@
+---
+- name: Add stable chart repo
+  kubernetes.core.helm_repository:
+    name: stable
+    repo_url: "https://kubernetes.github.io/dashboard/"
+
+- name: Setup the kubernetes dashboard
+  kubernetes.core.helm:
+    name: kubernetes-dashboard
+    chart_ref: kubernetes-dashboard/kubernetes-dashboard
+    release_namespace: kubernetes-dashboard
+    create_namespace: true
+    state: present
+
+- name: Make dashboard available
+  ansible.builtin.command: kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443 # noqa no-changed-when

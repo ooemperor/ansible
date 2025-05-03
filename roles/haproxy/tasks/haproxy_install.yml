@@ -1,0 +1,22 @@
+---
+- name: Install latest haproxy package
+  ansible.builtin.apt:
+    name:
+      - haproxy
+      - netcat-openbsd
+      - hatop
+  notify: Restart haproxy
+
+- name: Copy lua files for haproxy
+  ansible.builtin.copy:
+    src: files/cors.lua
+    dest: /etc/haproxy/cors.lua
+    mode: '0755'
+  notify: Restart haproxy
+
+- name: Copy haproxy config files
+  ansible.builtin.copy:
+    src: "../../inventories/host_files/{{ inventory_hostname }}/haproxy.cfg"
+    dest: /etc/haproxy/haproxy.cfg
+    mode: '0755'
+  notify: Restart haproxy

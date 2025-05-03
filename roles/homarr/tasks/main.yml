@@ -1,0 +1,5 @@
+---
+- name: Setup homarr docker
+  ansible.builtin.import_tasks: homarr.yml
+  tags:
+    - role::homarr

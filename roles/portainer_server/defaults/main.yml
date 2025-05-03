@@ -1,0 +1,5 @@
+---
+portainer_container_name: emplabs-portainer
+portainer_server_image: portainer/portainer-ce
+portainer_server_image_version: latest
+portainer_server_local_data_path: /opt/portainer/data

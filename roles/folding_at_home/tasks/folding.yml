@@ -1,0 +1,17 @@
+---
+- name: Install Folding at home docker
+  community.docker.docker_container:
+    name: "{{ folding_container_name }}"
+    image: "{{ folding_image }}"
+    recreate: true
+    pull: true
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ folding_volume_path }}:/config"
+    env:
+      TZ=Europe/Zurich
+      PUID=1000
+      PGID=1000
+    ports:
+      - 7396:7396
+      - 36330:36330

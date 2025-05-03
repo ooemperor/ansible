@@ -1,0 +1,8 @@
+---
+- name: Install Plex Media Server
+  ansible.builtin.apt:
+    name:
+      - plexmediaserver
+    state: latest # noqa package-latest
+    update_cache: true
+  notify: Restart plexmediaserver

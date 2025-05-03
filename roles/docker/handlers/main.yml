@@ -1,0 +1,9 @@
+---
+- name: Restart docker
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: true
+  with_items:
+    - docker
+    - docker-registry

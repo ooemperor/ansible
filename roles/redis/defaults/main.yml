@@ -1,0 +1,4 @@
+---
+redis_container_name: emplabs-redis
+redis_image: redis/redis-stack-server:latest
+redis_deb_path: https://packages.redis.io/deb

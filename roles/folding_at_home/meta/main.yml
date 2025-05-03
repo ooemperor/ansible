@@ -1,0 +1,21 @@
+---
+dependencies:
+  - role: docker
+galaxy_info:
+  author: Michael Kaiser
+  role_name: folding_at_home
+  description: Setup of foldingAtHome in docker container
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - foldingathome
+    - docker
+    - folding
+    - deployment

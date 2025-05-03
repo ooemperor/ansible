@@ -1,0 +1,28 @@
+---
+- name: Install PostgreSQL required packages
+  ansible.builtin.apt:
+    name:
+      - gpg
+    state: present
+    update_cache: true
+
+- name: Download PostgreSQL key and add it to system keyring
+  ansible.builtin.apt_key:
+    url: "{{ postgres_apt_key }}"
+    state: present
+
+- name: Add Postgresql APT repository
+  ansible.builtin.apt_repository:
+    repo: "deb {{ postgres_deb_path }} {{ distro }}-pgdg main"
+    state: present
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install PostgreSQL
+  ansible.builtin.apt:
+    name: "postgresql-{{ psql_version }}"
+    state: latest # noqa package-latest
+    update_cache: true
+  notify: Restart postgresql

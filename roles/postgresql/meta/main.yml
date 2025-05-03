@@ -1,0 +1,22 @@
+---
+dependencies: []
+galaxy_info:
+  author: Michael Kaiser
+  role_name: postgresql
+  description: Installation and Setup of Postgresql
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - homarr
+    - deployment
+    - postgresql
+    - database
+    - sql
+    - rdbms

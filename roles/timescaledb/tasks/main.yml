@@ -1,0 +1,10 @@
+---
+- name: Install timescaledb
+  ansible.builtin.import_tasks: install_timescaledb.yml
+  tags:
+    - 'role::timescaledb'
+
+- name: Create timescaledb extension
+  ansible.builtin.import_tasks: create_timescaledb_extension.yml
+  tags:
+    - 'role::timescaledb'

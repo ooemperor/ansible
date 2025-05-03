@@ -1,0 +1,6 @@
+---
+psql_version: 15
+distro: bookworm
+
+use_timescaledb: true
+timescaledb_version: 2.15.3

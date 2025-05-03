@@ -1,0 +1,14 @@
+---
+- name: Install rsyslog
+  ansible.builtin.apt:
+    name: rsyslog
+    state: present
+    update_cache: true
+  notify: Restart rsyslog
+
+- name: Copy rsyslog config
+  ansible.builtin.copy:
+    src: "rsyslog.conf"
+    dest: /etc/rsyslog.conf
+    mode: '0755'
+  notify: Restart rsyslog

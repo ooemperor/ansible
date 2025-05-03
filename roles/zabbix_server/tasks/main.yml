@@ -1,0 +1,15 @@
+---
+- name: Install and setup zabbix_server
+  ansible.builtin.import_tasks: zabbix-server-install.yml
+  tags:
+    - role::zabbix_server
+
+- name: Setup Zabbix Server config files
+  ansible.builtin.import_tasks: zabbix-server-config.yml
+  tags:
+    - role::zabbix_server
+
+- name: Setup timescaledb for the zabbix server
+  ansible.builtin.import_tasks: zabbix-server-timescale.yml
+  tags:
+    - role::zabbix_server

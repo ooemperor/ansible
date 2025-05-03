@@ -1,0 +1,10 @@
+---
+- name: Install patroni
+  ansible.builtin.import_tasks: patroni-install.yml
+  tags:
+    - 'role::patroni'
+
+- name: Setup patroni service
+  ansible.builtin.import_tasks: patroni-service-setup.yml
+  tags:
+    - 'role::patroni'

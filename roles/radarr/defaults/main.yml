@@ -1,0 +1,5 @@
+---
+radarr_container_name: emplabs-radarr
+radarr_image: lscr.io/linuxserver/radarr
+radarr_image_version: latest
+radarr_local_data_path: /opt/radarr/data

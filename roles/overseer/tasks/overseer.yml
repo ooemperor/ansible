@@ -1,0 +1,19 @@
+# Installing Overseer
+- name: Setup Overseer Docker
+  community.docker.docker_container:
+    name: "{{ overseer_container_name }}"
+    image: "{{ overseer_image }}:{{ overseer_image_version }}"
+    recreate: true
+    pull: true
+    networks:
+      - name: host
+    ports:
+      5055:5055
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ overseer_local_config_path }}:/app/config"
+    env:
+      LOG_LEVEL=debug
+      TZ=Europe/Zurich
+      PUID=0
+      PGID=0

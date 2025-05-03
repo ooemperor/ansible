@@ -1,0 +1,38 @@
+---
+- name: Adding Zappix Repo
+  ansible.builtin.apt:
+    deb: '{{ zabbix_repo }}'
+
+- name: Mark packages as unhold
+  ansible.builtin.shell: "apt-mark unhold {{ item }}=1:{{ zabbix_agent_version }}* || /bin/true" # noqa no-changed-when
+  loop: "{{ zabbix_agent_packages }}"
+
+- name: Installing the zabbix-agent2 with plugins
+  ansible.builtin.apt:
+    name:
+      - "zabbix-agent2=1:{{ zabbix_agent_version }}*"
+      - "zabbix-agent2-plugin-postgresql=1:{{ zabbix_agent_version }}*"
+    state: latest # noqa package-latest
+    update_cache: true
+  notify: Restart zabbix-agent2
+
+- name: Mark packages as hold
+  ansible.builtin.shell: "apt-mark hold {{ item }}=1:{{ zabbix_agent_version }}*" # noqa no-changed-when
+  loop: "{{ zabbix_agent_packages }}"
+
+- name: Copy Zabbix Agent2 config to the server
+  ansible.builtin.template:
+    src: zabbix_agent2.conf.j2
+    dest: /etc/zabbix/zabbix_agent2.conf
+    mode: '0755'
+  notify: Restart zabbix-agent2
+
+- name: Sync additional Zabbix config files
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/zabbix/zabbix_agent2.d/plugins.d/
+    mode: '0755'
+  loop:
+    - path: files/plugins.d/lxc.conf
+    - path: files/plugins.d/systemctl.conf
+  notify: Restart zabbix-agent2

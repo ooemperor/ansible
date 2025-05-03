@@ -1,0 +1,13 @@
+---
+- name: Create OS group for factorio
+  ansible.builtin.group:
+    name: "{{ factorio_user_group }}"
+    state: present
+
+- name: Create a user factorio
+  ansible.builtin.user:
+    name: "{{ factorio_user }}"
+    shell: /bin/bash
+    state: present
+    home: /home/factorio
+    create_home: true

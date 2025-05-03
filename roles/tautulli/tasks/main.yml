@@ -1,0 +1,5 @@
+---
+- name: Setup tautulli docker
+  ansible.builtin.import_tasks: tautulli.yml
+  tags:
+    - role::tautulli

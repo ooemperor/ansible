@@ -1,0 +1,5 @@
+---
+tautulli_container_name: emplabs-tautulli
+tautulli_image: lscr.io/linuxserver/tautulli
+tautulli_image_version: latest
+tautulli_local_config_path: /opt/tautulli/config

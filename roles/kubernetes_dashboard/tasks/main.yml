@@ -1,0 +1,6 @@
+---
+- name: Setup Dashboard
+  ansible.builtin.include_tasks: setup-dashboard.yml
+  tags:
+    - role::kubernetes
+    - role::kubernetes-dashbaord

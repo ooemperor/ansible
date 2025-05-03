@@ -1,0 +1,2 @@
+- name: Enable ipv4 forwarding
+  ansible.builtin.shell: sysctl -w net.ipv4.ip_forward=1 # noqa no-changed-when risky-shell-pipe command-instead-of-shell

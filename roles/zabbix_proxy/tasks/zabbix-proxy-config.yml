@@ -1,0 +1,7 @@
+---
+- name: Copy Zabbix Agent2 config to the server
+  ansible.builtin.template:
+    src: zabbix_proxy.conf.j2
+    dest: /etc/zabbix/proxy.conf
+    mode: '0755'
+  notify: Restart zabbix-proxy

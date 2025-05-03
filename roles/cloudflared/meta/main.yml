@@ -1,0 +1,15 @@
+---
+dependencies: []
+galaxy_info:
+  author: Michael Kaiser
+  role_name: cloudflared
+  description: Cloudflared installation of the newest version.
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - cloudflare
+    - deployment

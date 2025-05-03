@@ -1,0 +1,17 @@
+---
+- name: Run Tautulli Docker
+  community.docker.docker_container:
+    name: "{{ tautulli_container_name }}"
+    image: "{{ tautulli_image }}:{{ tautulli_image_version }}" # lscr.io/linuxserver/tautulli:latest
+    recreate: true
+    pull: true
+    network_mode: host
+    ports:
+      8181:8181
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ tautulli_local_config_path }}:/config"
+    env:
+      TZ=Europe/Zurich
+      PUID=0
+      PGID=0

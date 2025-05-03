@@ -1,0 +1,13 @@
+---
+- name: Setup Redis Docker
+  community.docker.docker_container:
+    name: "{{ redis_container_name }}"
+    image: "{{ redis_image }}" # redis:latest
+    state: started
+    recreate: true
+    pull: true
+    ports:
+      6379:6379
+    restart_policy: unless-stopped
+    env:
+      TZ=Europe/Zurich

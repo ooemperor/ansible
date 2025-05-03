@@ -1,0 +1,10 @@
+---
+- name: Install HAProxy
+  ansible.builtin.import_tasks: haproxy_install.yml
+  tags:
+    - 'role::haproxy'
+
+- name: Install rsyslog
+  ansible.builtin.import_tasks: rsyslog_install.yml
+  tags:
+    - 'role::haproxy'

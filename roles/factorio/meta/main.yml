@@ -1,0 +1,21 @@
+---
+dependencies: []
+galaxy_info:
+  author: Michael Kaiser
+  role_name: factorio
+  description: Setup of a factorio game server
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - factorio
+    - deployment
+    - game
+    - gameserver
+    - server

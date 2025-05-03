@@ -1,0 +1,13 @@
+---
+- name: Install portainer server
+  community.docker.docker_container:
+    name: "{{ portainer_container_name }}"
+    image: "{{ portainer_server_image }}:{{ portainer_server_image_version }}"
+    recreate: true
+    pull: true
+    networks:
+      - name: host
+    restart_policy: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "{{ portainer_server_local_data_path }}:/data"

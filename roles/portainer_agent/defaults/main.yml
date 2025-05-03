@@ -1,0 +1,4 @@
+---
+portainer_container_name: emplabs-portainer-agent
+portainer_agent_image: portainer/agent
+portainer_agent_image_version: latest

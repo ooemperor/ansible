@@ -1,0 +1,10 @@
+---
+- name: Import and execute the timescaledb role
+  ansible.builtin.include_role:
+    name: timescaledb
+  when: use_timescaledb
+
+- name: Running TimescaleDB setup if active on Zabbix Server
+  ansible.builtin.shell: cat /usr/share/zabbix-sql-scripts/postgresql/timescaledb/schema.sql | sudo -u zabbix psql zabbix # noqa no-changed-when command-instead-of-shell yaml[line-length] risky-shell-pipe
+  notify: Restart zabbix-server
+  when: inventory_hostname in groups["zabbix-server"]
