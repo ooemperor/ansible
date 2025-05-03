@@ -1,0 +1,5 @@
+exclude_paths:
+  - '*.yaml'
+
+skip_list:
+  - var-naming
