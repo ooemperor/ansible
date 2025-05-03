@@ -1,0 +1,24 @@
+---
+zabbix_server: 127.0.0.1
+zabbix_port: 80
+zabbix_username: username
+zabbix_password: password
+zabbix_agent_port: 10050
+zabbix_agent_packages:
+  - zabbix-agent2
+  - zabbix-agent2-plugin-postgresql
+
+zabbix_agent_version: 7.0.9
+
+zabbix_agent2_server: 127.0.0.1
+zabbix_agent2_server_active: 127.0.0.1,192.168.0.0/16
+zabbix_agent2_hostnames: Zabbix server
+
+zabbix_agent2_logfile: /var/log/zabbix/zabbix_agent2.log
+zabbix_agent2_logfile_size: 1
+
+zabbix_agent2_include: /etc/zabbix/zabbix_agent2.d/*.conf
+
+zabbix_agent2_pidFile: /var/run/zabbix/zabbix_agent2.pid
+zabbix_agent2_pluginSocket: /run/zabbix/agent.plugin.sock
+zabbix_agent2_controlSocket: /run/zabbix/agent.sock

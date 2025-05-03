@@ -1,0 +1,34 @@
+- name: Setup Netbox Docker Container
+  community.docker.docker_container:
+    name: "{{  netbox_container_name }}"
+    image: "{{ netbox_container_image }}:{{ netbox_container_image_version }}"
+    recreate: true
+    pull: true
+    restart_policy: unless-stopped
+    ports:
+      - 8080:8000
+    volumes:
+      - "{{ netbox_local_path }}:/config"
+    env:
+      TZ=Europe/Zurich
+      PUID=1000
+      PGID=1000
+      ALLOWED_HOST=*
+      DB_NAME="{{ netbox_db_name | string }}"
+      DB_USER="{{ netbox_db_user | string }}"
+      DB_PASSWORD="{{ netbox_db_password | string }}"
+      DB_HOST="{{ netbox_db_host | string }}"
+      DB_PORT="{{ netbox_db_port | string }}"
+      REDIS_HOST="{{ netbox_redis_host | string }}"
+      REDIS_PORT="{{ netbox_redis_port | string }}"
+
+- name: Sleep for 45 seconds and continue with play
+  ansible.builtin.wait_for:
+    timeout: 45
+
+- name: Install Netbox plugins # noqa no-changed-when command-instead-of-shell
+  ansible.builtin.shell:
+    cmd: "docker exec {{ netbox_container_name }} pip install {{ item }}"
+  with_items:
+    - "netbox-plugin-dns"
+    - "netbox-proxbox"

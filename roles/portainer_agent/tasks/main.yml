@@ -1,0 +1,6 @@
+---
+- name: Setup portainer_agent docker
+  ansible.builtin.import_tasks: portainer-agent.yml
+  tags:
+    - role::portainer
+    - role::portainer_agent

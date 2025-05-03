@@ -1,0 +1,6 @@
+---
+- name: Render the config file and copy it over
+  ansible.builtin.template:
+    src: "configuration.yaml.j2"
+    dest: "{{ homeassistant_local_config_path }}/configuration.yaml"
+    mode: '0755'

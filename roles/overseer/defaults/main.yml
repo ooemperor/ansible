@@ -1,0 +1,5 @@
+---
+overseer_container_name: emplabs-overseer
+overseer_image: sctx/overseerr
+overseer_image_version: latest
+overseer_local_config_path: /opt/overseer/config

@@ -1,0 +1,13 @@
+---
+- name: Install latest keepalived package
+  ansible.builtin.apt:
+    name:
+      - keepalived
+  notify: restart keepalived
+
+- name: Copy keepalived configuration file
+  ansible.builtin.copy:
+    src: "../../inventories/host_files/{{ inventory_hostname }}/keepalived.conf"
+    dest: /etc/keepalived/keepalived.conf
+    mode: '0755'
+  notify: Restart keepalived

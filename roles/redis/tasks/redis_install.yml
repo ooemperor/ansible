@@ -1,0 +1,27 @@
+---
+- name: Installing redis required packages
+  ansible.builtin.apt:
+    name:
+      - lsb-release
+      - curl
+      - gpg
+    update_cache: true
+    state: latest # noqa package-latest
+
+- name: Download Redis key and add it to system keyring
+  ansible.builtin.apt_key:
+    url: https://packages.redis.io/gpg
+    state: present
+
+- name: Add Redis APT repository
+  ansible.builtin.apt_repository:
+    repo: "deb {{ redis_deb_path }} {{ distro }}-pgdg main"
+    state: present
+
+- name: Installing redis
+  ansible.builtin.apt:
+    name:
+      - redis
+    update_cache: true
+    state: latest # noqa package-latest
+  notify: Restart and enable redis

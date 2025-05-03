@@ -1,0 +1,20 @@
+---
+zabbix_proxy_version: 7.0.9
+
+zabbix_proxy_database_name: zabbix_proxy
+zabbix_proxy_database_user: zabbix
+zabbix_proxy_database_password: password
+
+zabbix_proxy_mode: 1
+zabbix_proxy_server: 127.0.0.1
+zabbix_proxy_hostnames: proxy
+
+zabbix_proxy_logfile: /var/log/zabbix/zabbix_proxy.log
+zabbix_proxy_logfile_size: 1
+
+zabbix_proxy_pidFile: /run/zabbix/zabbix_proxy.pid
+zabbix_proxy_socketDir: /run/zabbix
+
+zabbix_proxy_timeout: 10
+zabbix_proxy_log_slow_queries: 3000
+zabbix_proxy_stats_allowed_ip: 127.0.0.1

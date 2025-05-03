@@ -1,0 +1,8 @@
+---
+- name: Setup config
+  ansible.builtin.template:
+    src: config.ini.j2
+    dest: "{{ factorio_dir }}/config/config.ini"
+    owner: "{{ factorio_user }}"
+    group: "{{ factorio_user_group }}"
+    mode: '0755'

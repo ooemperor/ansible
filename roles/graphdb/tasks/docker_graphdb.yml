@@ -1,0 +1,12 @@
+---
+- name: Run GraphDB Docker
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{ graphdb_image }}"
+    recreate: true
+    restart_policy: unless-stopped
+    pull: true
+    ports:
+      7200:7200
+    volumes:
+      - "{{ graphdb_local_volume }}:/opt/graphdb/home"

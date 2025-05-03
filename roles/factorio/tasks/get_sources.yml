@@ -1,0 +1,29 @@
+---
+- name: Remove factorio tmp folder if exists
+  ansible.builtin.file:
+    path: "{{ tmp_folder }}"
+    state: absent
+
+- name: Create empty factorio tmp folder if exists
+  ansible.builtin.file:
+    path: "{{ tmp_folder }}"
+    state: directory
+    mode: '0755'
+
+- name: Download factorio files
+  ansible.builtin.get_url:
+    url: "{{ factorio_source_url }}"
+    dest: "{{ tmp_folder }}/factorio.tar.xz"
+    mode: '0755'
+
+- name: Create empty factorio tmp folder if exists
+  ansible.builtin.file:
+    path: "{{ factorio_dir }}"
+    state: directory
+    mode: '0755'
+  notify: chown factorio folder
+
+- name: Extract and move files # noqa no-changed-when command-instead-of-module
+  ansible.builtin.shell: # noqa command-instead-of-shell
+    cmd: "tar -xJf {{ tmp_folder }}/factorio.tar.xz -C /opt"
+  notify: Chown factorio folder

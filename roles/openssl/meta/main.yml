@@ -1,0 +1,18 @@
+---
+dependencies: []
+galaxy_info:
+  author: Michael Kaiser
+  role_name: openssl
+  description: Basic Installation role of openssl
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - openssl
+    - deployment

@@ -1,0 +1,22 @@
+- name: Install containerd
+  ansible.builtin.apt:
+    name:
+      - containerd
+    state: present
+
+- name: Create directory /etc/containerd
+  ansible.builtin.file:
+    name: /etc/containerd
+    state: directory
+    mode: '0644'
+
+- name: Copy containerd config to the server
+  ansible.builtin.copy:
+    src: files/config.toml
+    dest: /etc/containerd/config.toml
+    mode: '0755'
+
+- name: Restart containerd service
+  ansible.builtin.service:
+    name: containerd
+    state: restarted

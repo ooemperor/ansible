@@ -1,0 +1,5 @@
+---
+- name: Setup redis docker
+  ansible.builtin.import_tasks: redis_docker.yml
+  tags:
+    - role::redis

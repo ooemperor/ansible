@@ -1,0 +1,20 @@
+---
+- name: Install requirements
+  ansible.builtin.import_tasks: get_requirements.yml
+  tags:
+    - role::factorio
+
+- name: Setup factorio user
+  ansible.builtin.import_tasks: user_setup.yml
+  tags:
+    - role::factorio
+
+- name: Install sources for factorio
+  ansible.builtin.import_tasks: get_sources.yml
+  tags:
+    - role::factorio
+
+- name: Setup factorio config
+  ansible.builtin.import_tasks: setup_config.yml
+  tags:
+    - role::factorio

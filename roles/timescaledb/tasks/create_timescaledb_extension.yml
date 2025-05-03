@@ -1,0 +1,25 @@
+---
+- name: Create TimescaleDB Extension
+  ansible.builtin.shell: psql -d {{ item }} -c "CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;" # noqa no-changed-when command-instead-of-shell
+  become: true
+  become_user: postgres
+  with_items:
+    - "{{ databases }}"
+  when: timescaledb_version == None
+
+
+- name: Create TimescaleDB Extension with Version
+  ansible.builtin.shell: psql -d {{ item }} -c "CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE VERSION '{{ timescaledb_version }}';" # noqa no-changed-when command-instead-of-shell yaml[line-length]
+  become: true
+  become_user: postgres
+  with_items:
+    - "{{ databases }}"
+  when: timescaledb_version != None
+
+- name: UPDATE TimescaleDB Extension with Version
+  ansible.builtin.shell: psql  -d {{ item }} -c "ALTER EXTENSION timescaledb UPDATE TO '{{ timescaledb_version }}';" # noqa no-changed-when command-instead-of-shell yaml[line-length]
+  become: true
+  become_user: postgres
+  with_items:
+    - "{{ databases }}"
+  when: timescaledb_version != None

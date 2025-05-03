@@ -1,0 +1,15 @@
+---
+- name: Install zabbix-agent2
+  ansible.builtin.import_tasks: zabbix-agent2.yml
+  tags:
+    - 'role::zabbix_agent2'
+
+- name: Execute docker host specific zabbix commands
+  ansible.builtin.import_tasks: zabbix-agent2-chown-docker.yml
+  tags:
+    - 'role::zabbix_agent2'
+
+- name: Register zabbix host on zabbix-server
+  ansible.builtin.import_tasks: zabbix-registration.yml
+  tags:
+    - 'role::zabbix_agent2'

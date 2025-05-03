@@ -1,0 +1,12 @@
+---
+- name: Check if /var/run/docker.sock exists
+  ansible.builtin.stat:
+    path: /var/run/docker.sock
+  register: docker_sock
+
+- name: Chown zabbix /var/run/docker.sock if it exists
+  ansible.builtin.file:
+    path: /var/run/docker.sock
+    owner: zabbix
+    group: docker
+  when: docker_sock.stat.exists

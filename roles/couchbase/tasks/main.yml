@@ -1,0 +1,5 @@
+---
+- name: Setup couchbase docker container
+  ansible.builtin.import_tasks: couchbase.yml
+  tags:
+    - role::couchbase

@@ -1,0 +1,4 @@
+---
+folding_image: lscr.io/linuxserver/foldingathome:latest
+folding_container_name: folding-at-home
+folding_volume_path: /opt/folding

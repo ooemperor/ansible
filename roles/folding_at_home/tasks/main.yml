@@ -1,0 +1,6 @@
+---
+- name: Run the docker container setup
+  ansible.builtin.import_tasks: folding.yml
+  tags:
+    - role::folding
+    - role::foldingAtHome

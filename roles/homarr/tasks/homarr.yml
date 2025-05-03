@@ -1,0 +1,19 @@
+---
+- name: Run Homarr Docker
+  community.docker.docker_container:
+    name: "{{ homarr_container_name }}"
+    image: "{{ homarr_image }}:{{ homarr_image_version }}"
+    recreate: true
+    pull: true
+    network_mode: host
+    ports:
+      7575:7575
+    restart_policy: always
+    volumes:
+      - "{{ homarr_local_volume }}/configs:/app/data/configs"
+      - "{{ homarr_local_volume }}/data:/data"
+      - "{{ homarr_local_volume }}/icons:/app/public/icons"
+    env:
+      TZ=Europe/Zurich
+      PUID=0
+      PGID=0

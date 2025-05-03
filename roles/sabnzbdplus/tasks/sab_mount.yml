@@ -1,0 +1,37 @@
+---
+- name: Check for /nfs/plex/downloads_sab existence
+  ansible.builtin.file:
+    path: "{{ nfs_plex_path_mounted }}/downloads_sab"
+    state: directory
+    mode: '0644'
+
+- name: Check for /nfs/sabnzbd  existence
+  ansible.builtin.file:
+    path: /nfs/sabnzbd
+    state: directory
+    mode: '0644'
+
+- name: Install nfs-ganesha
+  ansible.builtin.apt:
+    name:
+      - nfs-ganesha
+    state: latest # noqa package-latest
+    update_cache: true
+
+- name: Reload systemctl daemon
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Mount the sab plex NFS volume
+  ansible.posix.mount:
+    src: '{{ NAS1_IP1 }}:{{ sab_plex_path }}'
+    path: "{{ nfs_plex_path_mounted }}/downloads_sab"
+    state: mounted
+    fstype: nfs
+
+- name: Mount the sab downloads NFS volume
+  ansible.posix.mount:
+    src: '{{ NAS1_IP1 }}:{{ sab_downloads_sab_path }}'
+    path: /nfs/sabnzbd
+    state: mounted
+    fstype: nfs

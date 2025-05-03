@@ -1,0 +1,34 @@
+---
+zabbix_server_version: 7.0.9
+
+zabbix_server_debug_level: 3
+zabbix_server_log_file: /var/log/zabbix/zabbix_server.log
+zabbix_server_log_file_size: 100
+
+zabbix_server_pid_file: /run/zabbix/zabbix_server.pid
+zabbix_server_socket_dir: /run/zabbix
+
+zabbix_server_database_host: 127.0.0.1
+zabbix_server_database_port: 5432
+zabbix_server_database_name: zabbix
+zabbix_server_database_user: zabbix
+zabbix_server_database_password: password
+
+zabbix_server_start_pingers: 2
+zabbix_server_timeout: 10
+zabbix_server_log_slow_queries: 3000
+zabbix_server_stats_allowed_ip: 127.0.0.1
+
+zabbix_server_start_snmp_trappers: 0
+
+zabbix_server_start_vmware_collectors: 0
+zabbix_server_vmware_cache_size: 8M
+
+zabbix_server_trend_cache_size: 4M
+zabbix_server_function_cache_size: 4M
+zabbix_server_value_cache_size: 8M
+zabbix_server_history_cache_size: 16M
+zabbix_server_history_index_cache_size: 4M
+
+zabbix_server_max_housekeeper_delete: 10000
+zabbix_server_housekeeping_frequency: 1

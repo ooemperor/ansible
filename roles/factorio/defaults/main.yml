@@ -1,0 +1,12 @@
+---
+tmp_folder: /tmp/factorio
+factorio_dir: /opt/factorio
+factorio_user: factorio
+factorio_user_group: factorio
+factorio_source_url: https://factorio.com/get-download/stable/headless/linux64
+
+# config.ini params
+
+factorio_read_path: /opt/factorio/data
+factorio_write_path: /opt/factorio
+factorio_port: 34197

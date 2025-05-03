@@ -1,0 +1,19 @@
+---
+dependencies: []
+galaxy_info:
+  author: Michael Kaiser
+  role_name: bind9
+  description: Installation and deployment of bind9 dns server
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - bind9
+    - dns
+    - deployment

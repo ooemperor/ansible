@@ -1,0 +1,31 @@
+---
+- name: Create prometheus volume
+  community.docker.docker_volume:
+    name: "{{ prometheus_volume_name }}"
+
+- name: Check for local prometheus directory and its existence
+  ansible.builtin.file:
+    path: "{{ prometheus_local_path }}"
+    state: directory
+    mode: '0644'
+
+- name: Copy prometheus config file
+  ansible.builtin.copy:
+    src: files/prometheus.yml
+    dest: "{{ prometheus_local_path }}/prometheus.yml"
+    mode: '0755'
+    remote_src: false
+
+- name: Run prometheus docker
+  community.docker.docker_container:
+    name: emplabs-prometheus
+    image: "{{ prometheus_image }}"
+    pull: true
+    recreate: true
+    restart_policy: unless-stopped
+    network_mode: host
+    volumes:
+      - "{{ prometheus_local_path }}/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "{{ prometheus_volume_name }}:/prometheus"
+    ports:
+      - 9090:9090

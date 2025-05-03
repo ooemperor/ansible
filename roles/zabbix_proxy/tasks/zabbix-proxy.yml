@@ -1,0 +1,13 @@
+---
+- name: Adding Zappix Repo
+  ansible.builtin.apt:
+    deb: '{{ zabbix_repo }}'
+
+- name: Installing zabbix proxy with the postgres database
+  ansible.builtin.apt:
+    name:
+      - "zabbix-proxy-pgsql=1:{{ zabbix_proxy_version }}*"
+      - "zabbix-sql-scripts=1:{{ zabbix_proxy_version }}*"
+    state: latest # noqa package-latest
+    update_cache: true
+  notify: Restart zabbix-proxy

@@ -1,0 +1,10 @@
+---
+- name: Install pg_agent
+  ansible.builtin.apt:
+    name: pgagent
+    state: present
+
+- name: Create pgagent extension # noqa no-changed-when
+  ansible.builtin.shell: psql -c 'CREATE EXTENSION pgagent;'
+  become: true
+  become_user: postgres

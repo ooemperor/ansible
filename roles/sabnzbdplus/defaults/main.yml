@@ -1,0 +1,5 @@
+---
+sabnzbdplus_apt_repo: deb http://deb.debian.org/debian bookworm-backports main contrib non-free
+sab_container_name: emplabs-sabnzbd
+sab_image: linuxserver/sabnzbd
+sab_local_config_path: /opt/sabnzbd/config

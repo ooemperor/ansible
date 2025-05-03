@@ -1,0 +1,23 @@
+---
+- name: Create grafana volume
+  community.docker.docker_volume:
+    name: "{{ grafana_volume_name }}"
+
+- name: Setup Grafana in a docker container
+  community.docker.docker_container:
+    name: "{{ grafana_container_name }}"
+    image: "{{ grafana_image }}"
+    recreate: true
+    pull: true
+    networks:
+      - name: host
+    ports:
+      - 3000:3000
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ grafana_volume_name }}:/var/lib/grafana:rw"
+    env:
+      GF_LOG_LEVEL=debug
+      TZ=Europe/Zurich
+      PUID=0
+      PGID=0

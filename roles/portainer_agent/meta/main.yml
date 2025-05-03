@@ -1,0 +1,19 @@
+---
+dependencies:
+  - role: docker
+galaxy_info:
+  author: Michael Kaiser
+  role_name: portainer_agent
+  description: Setup of portainer agent in a docker container
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - portainer
+    - deployment

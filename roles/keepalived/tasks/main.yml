@@ -1,0 +1,5 @@
+---
+- name: Setup keepalived
+  ansible.builtin.import_tasks: keepalived-install.yml
+  tags:
+    - 'role::keepalived'

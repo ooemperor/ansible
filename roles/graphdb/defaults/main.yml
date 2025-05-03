@@ -1,0 +1,4 @@
+---
+graphdb_image: ontotext/graphdb
+container_name: emplabs-graphdb
+graphdb_local_volume: /opt/graphdb/home

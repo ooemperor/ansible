@@ -1,0 +1,7 @@
+---
+- name: Drop TimescaleDB Extension
+  ansible.builtin.shell: psql -d {{ item }} -c "DROP EXTENSION IF EXISTS timescaledb CASCADE;" # noqa no-changed-when command-instead-of-shell
+  become: true
+  become_user: postgres
+  with_items:
+    - "{{ databases }}"

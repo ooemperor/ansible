@@ -1,0 +1,13 @@
+---
+netbox_container_name: emplabs-netbox # Name of the container
+netbox_container_image: lscr.io/linuxserver/netbox
+netbox_container_image_version: latest
+netbox_local_path: /opt/netbox/config
+
+netbox_redis_host: 127.0.0.1
+netbox_redis_port: 6379
+netbox_db_host: 127.0.0.1
+netbox_db_name: netbox
+netbox_db_user: netbox
+netbox_db_password: password
+netbox_db_port: 5000

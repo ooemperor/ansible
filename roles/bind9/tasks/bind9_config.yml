@@ -1,0 +1,8 @@
+---
+- name: Sync additional Bind config files
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: /etc/bind/
+    mode: '0644'
+  loop: "{{ config_files }}"
+  notify: Restart bind9

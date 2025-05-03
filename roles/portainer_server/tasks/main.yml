@@ -1,0 +1,6 @@
+---
+- name: Setup portainer_server docker
+  ansible.builtin.import_tasks: portainer-server.yml
+  tags:
+    - role::portainer
+    - role::portainer_server

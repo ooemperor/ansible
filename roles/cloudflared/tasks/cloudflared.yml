@@ -1,0 +1,55 @@
+---
+- name: Install cloudflared required packages
+  ansible.builtin.apt:
+    name:
+      - gpg
+    state: present
+    update_cache: true
+
+- name: Check if /etc/apt/sources.list.d/cloudflared.list exists
+  ansible.builtin.stat:
+    path: /etc/apt/sources.list.d/cloudflared.list
+  register: etc_cloudflared
+
+- name: Add cloudflared repo to sources.list.d
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/cloudflared.list
+    line: 'deb https://pkg.cloudflare.com/cloudflared {{ distro }} main'
+    create: true
+    mode: '0755'
+  when: not etc_cloudflared.stat.exists
+
+- name: Test if cloudflared is already in /etc/apt/sources.list.d/cloudflared.list
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/cloudflared.list
+    regexp: 'deb \[signed-by=/usr/share/keyrings/cloudflare-main.gpg\] https://pkg.cloudflare.com/cloudflared {{ ansible_distribution_release | lower }} main'
+    state: absent
+    mode: '0755'
+  check_mode: true
+  changed_when: false
+  register: cloudflared_apt
+
+- name: Add cloudflared repo to sources.list.d
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/cloudflared.list
+    line: 'deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_distribution_release | lower }} main'
+    create: true
+    mode: '0755'
+  when: cloudflared_apt.found == 0
+
+- name: Download Cloudflared key and add it to system keyring
+  ansible.builtin.apt_key:
+    url: https://pkg.cloudflare.com/cloudflare-main.gpg
+    keyring: /usr/share/keyrings/cloudflare-main.gpg
+    state: present
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install cloudflared
+  ansible.builtin.apt:
+    name: cloudflared
+    state: latest # noqa package-latest
+    update_cache: true
+  notify: restart cloudflared

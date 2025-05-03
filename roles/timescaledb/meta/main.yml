@@ -1,0 +1,22 @@
+---
+dependencies: []
+galaxy_info:
+  author: Michael Kaiser
+  role_name: timescaledb
+  description: Installation and setup of the timescaledb extension for PostgreSQL
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - timescaledb
+    - timescale
+    - postgresql
+    - patroni
+    - database
+    - deployment

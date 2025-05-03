@@ -1,0 +1,28 @@
+---
+- name: Register host on Zabbix server # noqa args[module]
+  vars:
+    ansible_network_os: community.zabbix.zabbix
+    ansible_connection: httpapi
+    ansible_host: "{{ zabbix_server }}"
+    ansible_user: "{{ zabbix_username }}"
+    ansible_httpapi_pass: "{{ zabbix_password }}"
+
+  community.zabbix.zabbix_host:
+    host_name: "{{ inventory_hostname }}"
+    host_groups: "{{ zabbix_host_groups }}"
+    link_templates: "{{ zabbix_templates }}"
+    status: "{{ zabbix_host_status }}"
+    state: present
+    monitored_by: "{{ zabbix_monitored_by }}"
+    proxy: "{{ zabbix_proxy }}"
+    proxy_group: "{{ zabbix_proxy_group }}"
+    interfaces:
+      - type: 1
+        main: 1
+        useip: 1
+        ip: "{{ ipv4 }}"
+        dns: "{{ inventory_hostname + '.' + domain }}"
+        port: "{{ zabbix_agent_port }}"
+    tags: "{{ zabbix_tags | default([]) }}"
+    macros: "{{ zabbix_macros | default([]) }}"
+  delegate_to: localhost

@@ -1,0 +1,5 @@
+---
+- name: Setup grafana docker
+  ansible.builtin.include_tasks: grafana-setup.yml
+  tags:
+    - role::grafana

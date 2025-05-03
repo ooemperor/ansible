@@ -1,0 +1,48 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Check if /etc/apt/sources.list.d/percona-original-release.list exists
+  ansible.builtin.stat:
+    path: /etc/apt/sources.list.d/percona-original-release.list.bak
+  register: etc_percona
+
+- name: Install other dependent packages
+  ansible.builtin.apt:
+    name:
+      - gnupg2
+      - lsb-release
+    state: present
+  when: not etc_percona.stat.exists
+
+- name: Install Percona
+  ansible.builtin.apt:
+    deb: "{{ percona_deb_path }}"
+    state: present
+  when: not etc_percona.stat.exists
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Percona Installation Command # noqa no-changed-when
+  ansible.builtin.shell: percona-release setup ppg15 # noqa command-instead-of-shell
+
+- name: Install needed Python packages for percona
+  ansible.builtin.apt:
+    name:
+      - python3-pip
+      - python3-dev
+      - binutils
+    state: present
+
+- name: Install Packages for ETCD, Patroni and pgBackRest
+  ansible.builtin.apt:
+    name:
+      - percona-patroni
+      - etcd
+      - etcd-server
+      - etcd-client
+      - percona-pgbackrest
+    state: present

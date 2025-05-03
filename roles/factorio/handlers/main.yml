@@ -1,0 +1,8 @@
+---
+- name: Chown factorio folder
+  ansible.builtin.file:
+    path: "{{ factorio_dir }}"
+    owner: "{{ factorio_user }}"
+    group: "{{ factorio_user_group }}"
+    state: directory
+    recurse: true

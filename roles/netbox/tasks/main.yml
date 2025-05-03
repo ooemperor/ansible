@@ -1,0 +1,5 @@
+---
+- name: Setup netbox docker
+  ansible.builtin.import_tasks: netbox_docker.yml
+  tags:
+    - role::netbox

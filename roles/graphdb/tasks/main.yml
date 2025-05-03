@@ -1,0 +1,5 @@
+---
+- name: Setup graphdb docker
+  ansible.builtin.import_tasks: docker_graphdb.yml
+  tags:
+    - role::graphdb

@@ -1,0 +1,18 @@
+---
+- name: Setup Radarr Docker
+  community.docker.docker_container:
+    name: "{{ radarr_container_name }}"
+    image: "{{ radarr_image }}:{{ radarr_image_version }}" # lscr.io/linuxserver/radarr:latest
+    recreate: true
+    pull: true
+    network_mode: host
+    ports:
+      7878:7878
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ radarr_local_data_path }}:/config"
+      - "{{ nfs_plex_path_mounted }}:{{ nfs_plex_path_mounted }}"
+    env:
+      TZ=Europe/Zurich
+      PUID=1000
+      PGID=1000

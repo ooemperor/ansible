@@ -1,0 +1,10 @@
+---
+- name: Mount paths for sonarr
+  ansible.builtin.import_tasks: sonarr_mount.yml
+  tags:
+    - role::sonarr
+
+- name: Setup sonarr docker
+  ansible.builtin.import_tasks: sonarr_install.yml
+  tags:
+    - role::sonarr

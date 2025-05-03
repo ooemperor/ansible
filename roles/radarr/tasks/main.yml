@@ -1,0 +1,10 @@
+---
+- name: Mount nfs for radarr
+  ansible.builtin.import_tasks: radarr_mount.yml
+  tags:
+    - role::radarr
+
+- name: Setup radarr docker container
+  ansible.builtin.import_tasks: radarr_install.yml
+  tags:
+    - role::radarr

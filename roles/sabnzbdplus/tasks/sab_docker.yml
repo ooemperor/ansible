@@ -1,0 +1,19 @@
+---
+- name: Setup Sabnzbd Docker
+  community.docker.docker_container:
+    name: "{{ sab_container_name }}"
+    image: "{{ sab_image }}"
+    recreate: true
+    pull: true
+    network_mode: host
+    ports:
+      8080:8080
+    restart_policy: unless-stopped
+    volumes:
+      - "/nfs/sabnzbd:/nfs/sabnzbd"
+      - "{{ nfs_plex_path_mounted }}/downloads_sab:/nfs/plex/downloads_sab"
+      - "{{ sab_local_config_path }}:/config"
+    env:
+      TZ=Europe/Zurich
+      PUID=1000
+      PGID=1000

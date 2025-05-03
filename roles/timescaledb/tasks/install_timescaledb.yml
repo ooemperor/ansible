@@ -1,0 +1,42 @@
+---
+- name: Add TimescaleDB APT repository key
+  ansible.builtin.apt_key:
+    url: https://packagecloud.io/timescale/timescaledb/gpgkey
+    state: present
+
+- name: Add TimescaleDB APT repository
+  ansible.builtin.apt_repository:
+    repo: "deb https://packagecloud.io/timescale/timescaledb/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release | lower }} main" # noqa yaml[line-length]
+    state: present
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install TimescaleDB package
+  ansible.builtin.apt:
+    name:
+      - timescaledb-2-postgresql-{{ psql_version }}
+      - postgresql-client-{{ psql_version }}
+    state: present
+    update_cache: true
+  when: timescaledb_version == None
+
+- name: Install TimescaleDB package with Version
+  ansible.builtin.apt:
+    name:
+      - timescaledb-2-postgresql-{{ psql_version }}={{ timescaledb_version }}*
+      - postgresql-client-{{ psql_version }}
+    state: present
+    update_cache: true
+  when: timescaledb_version != None
+
+- name: Run TimescaleDB tune
+  ansible.builtin.shell: timescaledb-tune --yes # noqa no-changed-when command-instead-of-shell
+  become: true
+
+- name: Restart Postgresql
+  ansible.builtin.service:
+    name: postgresql
+    state: restarted
+    enabled: true

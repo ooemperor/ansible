@@ -1,0 +1,7 @@
+---
+- name: Setup Helm
+  ansible.builtin.include_tasks: setup-helm-raw.yml
+  tags:
+    - role::kubernetes
+    - role::helm
+    - role::kubernetes-helm

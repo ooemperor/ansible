@@ -1,0 +1,5 @@
+---
+sonarr_container_name: emplabs-sonarr
+sonarr_image: lscr.io/linuxserver/sonarr
+sonarr_image_version: latest
+sonarr_local_data_path: /opt/sonarr/data

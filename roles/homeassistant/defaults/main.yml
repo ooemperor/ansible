@@ -1,0 +1,5 @@
+---
+homeassistant_local_config_path: /opt/homeassistant/config
+homeassistant_docker_image: ghcr.io/home-assistant/home-assistant
+homeassistant_docker_image_version: stable
+homeassistant_docker_name: emplabs-homeassistant

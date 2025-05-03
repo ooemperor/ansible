@@ -1,0 +1,31 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: kubernetes_dashboard
+  author: Michael Kaiser
+  description: Kubernetes dashboard setup
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - focal
+        - jammy
+  galaxy_tags:
+    - system
+    - containers
+    - orchestration
+    - kubernetes
+    - k8s
+    - paas
+    - saas
+    - hosting
+    - dashboard

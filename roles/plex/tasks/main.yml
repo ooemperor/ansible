@@ -1,0 +1,10 @@
+---
+- name: Create plex mounts
+  ansible.builtin.import_tasks: plex_mount.yml
+  tags:
+    - 'role::plex'
+
+- name: Install plex
+  ansible.builtin.import_tasks: plex_install.yml
+  tags:
+    - 'role::plex'

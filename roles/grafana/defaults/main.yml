@@ -1,0 +1,6 @@
+---
+grafana_outside_port: 3000
+grafana_container_name: emplabs-grafana
+grafana_image: grafana/grafana-enterprise
+grafana_volume: /var/opt/grafana
+grafana_volume_name: emplabs_grafana_volume

@@ -1,0 +1,29 @@
+---
+- name: Install netbox dependencies
+  ansible.builtin.apt:
+    name:
+      - python3
+      - python3-pip
+      - python3-venv
+      - python3-dev
+      - build-essential
+      - libxml12-dev
+      - libxslt1-dev
+      - libffi-dev
+      - libpq-dev
+      - libssl-dev
+      - zlib1g-dev
+      - git
+    update_cache: true
+    state: latest # noqa package-latest
+
+- name: Remove netbox git repository
+  ansible.builtin.file:
+    path: /opt/netbox
+    state: absent
+
+- name: Clone the Netbox repository into /opt/netbox # noqa latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/netbox-community/netbox.git
+    dest: /opt/netbox
+    clone: true

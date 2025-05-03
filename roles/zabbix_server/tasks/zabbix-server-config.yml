@@ -1,0 +1,19 @@
+---
+- name: Copy the server config files
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: '0755'
+  loop:
+    - src: files/apache.conf
+      dest: /etc/zabbix/apache.conf
+    - src: files/web/zabbix.conf.php
+      dest: /etc/zabbix/web/zabbix.conf.php
+  notify: Restart zabbix-server
+
+- name: Render the Zabbix Server Config
+  ansible.builtin.template:
+    src: zabbix_server.conf.j2
+    dest: "/etc/zabbix/zabbix_server.conf"
+    mode: '0755'
+  notify: Restart zabbix-server

@@ -1,0 +1,10 @@
+---
+- name: Restart zabbix-server
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: true
+  loop:
+    - zabbix-server
+    - zabbix-agent2
+    - apache2

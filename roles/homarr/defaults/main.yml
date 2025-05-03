@@ -1,0 +1,5 @@
+---
+homarr_image: ghcr.io/ajnart/homarr
+homarr_image_version: latest
+homarr_local_volume: /opt/homarr
+homarr_container_name: emplabs_homarr
