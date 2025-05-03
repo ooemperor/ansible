@@ -2,9 +2,9 @@
 name: ansible-lint for roles
 on:
   push:
-    branches: ["*"]
+    branches: ["*", "**"]
   pull_request:
-    branches: ["*"]
+    branches: ["*", "**"]
 jobs:
   build:
     name: Ansible Lint # Naming the build is important to use it as a status check
