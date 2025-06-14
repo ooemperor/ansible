@@ -25,4 +25,5 @@
         port: "{{ zabbix_agent_port }}"
     tags: "{{ zabbix_tags | default([]) }}"
     macros: "{{ zabbix_macros | default([]) }}"
+    description: "Managed by ansible {{  zabbix_description }}"
   delegate_to: localhost
