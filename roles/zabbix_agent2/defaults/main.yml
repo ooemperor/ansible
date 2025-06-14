@@ -22,3 +22,5 @@ zabbix_agent2_include: /etc/zabbix/zabbix_agent2.d/*.conf
 zabbix_agent2_pidFile: /var/run/zabbix/zabbix_agent2.pid
 zabbix_agent2_pluginSocket: /run/zabbix/agent.plugin.sock
 zabbix_agent2_controlSocket: /run/zabbix/agent.sock
+
+zabbix_description: Managed with ansible

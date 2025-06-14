@@ -1,0 +1,5 @@
+---
+- name: Setup mongodb docker
+  ansible.builtin.include_tasks: mongodb-setup.yml
+  tags:
+    - role::mongodb

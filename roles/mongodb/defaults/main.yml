@@ -1,0 +1,7 @@
+---
+mongodb_container_name: emplabs-mongodb
+mongodb_image: mongo
+mongodb_image_version: latest
+mongodb_volume_name: emplabs_mongodb_volume
+mongodb_network: mongodb
+mongodb_port: 27017

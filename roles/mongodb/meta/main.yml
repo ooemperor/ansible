@@ -1,0 +1,19 @@
+---
+dependencies:
+  - role: docker
+galaxy_info:
+  author: Michael Kaiser
+  role_name: mongodb
+  description: Setup of mongodb in docker container
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - mongodb
+    - deployment
