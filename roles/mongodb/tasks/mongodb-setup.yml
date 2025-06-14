@@ -1,0 +1,22 @@
+---
+- name: Create mongodb network
+  community.docker.docker_network:
+    name: "{{ mongodb_network }}"
+
+- name: Create mongodb volume
+  community.docker.docker_volume:
+    name: "{{ mongodb_volume_name }}"
+
+- name: Setup Mongodb in a docker container
+  community.docker.docker_container:
+    name: "{{ mongodb_container_name }}"
+    image: "{{ mongodb_image }}:{{ mongodb_image_version }}"
+    recreate: true
+    pull: true
+    networks:
+      - name: "{{ mongodb_network }}"
+    ports:
+      - "{{ mongodb_port }}:27017"
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ mongodb_volume_name }}/data:/data/db"
