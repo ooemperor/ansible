@@ -1,0 +1,5 @@
+---
+- name: Install git
+  ansible.builtin.include_tasks: git-install.yml
+  tags:
+    - role::git
