@@ -52,4 +52,4 @@
     name: cloudflared
     state: latest # noqa package-latest
     update_cache: true
-  notify: restart cloudflared
+  notify: Restart cloudflared
