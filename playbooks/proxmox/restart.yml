@@ -1,0 +1,16 @@
+---
+- name: Restart Proxmox CT/VM
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Restart CT/VM
+      community.general.proxmox:
+        node: "{{ proxmox_api_node }}"
+        api_user: "{{ proxmox_api_user }}"
+        api_token_id: "{{ proxmox_api_id }}"
+        api_token_secret: "{{ proxmox_api_secret }}"
+        api_host: "{{ proxmox_api_host }}"
+        hostname: "{{ inventory_hostname }}"
+        state: restarted
+      delegate_to: localhost
