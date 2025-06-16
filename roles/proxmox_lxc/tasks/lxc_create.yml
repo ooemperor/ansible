@@ -37,7 +37,7 @@
       net0: "name=eth0,bridge=vmbr0,firewall=1,ip=dhcp,tag={{ vlan_id }},type=veth"
     state: started
     disk_volume:
-      storage: datastore
+      storage: "{{ proxmox_storage }}"
       size: "{{ proxmox_disk_size }}"
     update: true
   delegate_to: localhost
