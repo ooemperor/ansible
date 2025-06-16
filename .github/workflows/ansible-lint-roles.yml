@@ -18,4 +18,4 @@ jobs:
           args: "roles/"
           setup_python: "true"
           working_directory: ""
-          requirements_file: ""
+          requirements_file: "requirements.yml"

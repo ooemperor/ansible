@@ -1,5 +1,5 @@
 # .github/workflows/ansible-lint.yml
-name: ansible-lint for roles
+name: ansible-lint for playbooks
 on:
   push:
     branches: ["*", "**"]
@@ -18,4 +18,4 @@ jobs:
           args: "playbooks/"
           setup_python: "true"
           working_directory: ""
-          requirements_file: ""
+          requirements_file: "requirements.yml"
