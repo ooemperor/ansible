@@ -1,0 +1,5 @@
+---
+- name: Create LXC container
+  ansible.builtin.import_tasks: lxc_create.yml
+  tags:
+    - role::proxmox_lxc

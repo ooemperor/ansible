@@ -4,7 +4,8 @@ This repository is a collection of ansible roles, playbooks and more that might 
 Evertyhing is provided as is without any guarantees. 
 
 ## Lint state
-[![CI](https://github.com/ooemperor/ansible/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/ooemperor/ansible/actions/workflows/ansible-lint.yml)
+[![CI](https://github.com/ooemperor/ansible/actions/workflows/ansible-lint-roles.yml/badge.svg)](https://github.com/ooemperor/ansible/actions/workflows/ansible-lint-roles.yml)
+[![CI](https://github.com/ooemperor/ansible/actions/workflows/ansible-lint-playbooks.yml/badge.svg)](https://github.com/ooemperor/ansible/actions/workflows/ansible-lint-playbooks.yml)
 
 ## Questions / Feedback
 If you have any questions or feedback about the roles, feel free to get in contact. 
