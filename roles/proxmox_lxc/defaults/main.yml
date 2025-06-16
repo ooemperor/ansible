@@ -5,6 +5,7 @@ proxmox_api_id: test
 proxmox_api_secret: abcdefgh-1234-5678-abcd-abcdefghijkl
 proxmox_api_node: node
 proxmox_ostemplate: storage:vztmpl/template.tar.zst
+proxmox_unpriviliged: true
 
 proxmox_cpu_cores: 1
 proxmox_memory: 1024

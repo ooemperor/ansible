@@ -12,6 +12,7 @@
     cores: "{{ proxmox_cpu_cores }}"
     memory: "{{ proxmox_memory }}"
     swap: "{{ proxmox_swap }}"
+    unprivileged: "{{ proxmox_unpriviliged }}"
     netif:
       net0: "name=eth0,bridge=vmbr0,firewall=1,ip=dhcp,tag={{ vlan_id }},type=veth"
     state: present
@@ -33,6 +34,7 @@
     cores: "{{ proxmox_cpu_cores }}"
     memory: "{{ proxmox_memory }}"
     swap: "{{ proxmox_swap }}"
+    unprivileged: "{{ proxmox_unpriviliged }}"
     netif:
       net0: "name=eth0,bridge=vmbr0,firewall=1,ip=dhcp,tag={{ vlan_id }},type=veth"
     state: started
