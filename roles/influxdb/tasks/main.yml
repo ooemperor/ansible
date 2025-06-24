@@ -1,0 +1,5 @@
+---
+- name: Setup influxdb docker
+  ansible.builtin.import_tasks: influxdb.yml
+  tags:
+    - role::influxdb

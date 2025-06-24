@@ -1,0 +1,21 @@
+# .github/workflows/ansible-lint.yml
+name: ansible-lint for roles
+on:
+  push:
+    branches: ["*", "**"]
+  pull_request:
+    branches: ["*", "**"]
+jobs:
+  build:
+    name: Ansible Lint # Naming the build is important to use it as a status check
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@main
+        # optional (see below):
+        with:
+          args: "roles/"
+          setup_python: "true"
+          working_directory: ""
+          requirements_file: "requirements.yml"

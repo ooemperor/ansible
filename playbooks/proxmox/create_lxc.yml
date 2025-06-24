@@ -1,0 +1,9 @@
+---
+- name: Create Proxmox CT with basic configuration
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Create LXC with role
+      ansible.builtin.include_role:
+        name: proxmox_lxc

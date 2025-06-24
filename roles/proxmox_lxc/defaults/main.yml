@@ -1,0 +1,16 @@
+---
+proxmox_api_user: user@pam
+proxmox_api_host: 127.0.0.1
+proxmox_api_id: test
+proxmox_api_secret: abcdefgh-1234-5678-abcd-abcdefghijkl
+proxmox_api_node: node
+proxmox_ostemplate: storage:vztmpl/template.tar.zst
+proxmox_unpriviliged: true
+
+proxmox_cpu_cores: 1
+proxmox_memory: 1024
+proxmox_swap: 1024
+proxmox_disk_size: 10
+proxmox_storage: storage
+
+vlan_id: 2

@@ -1,0 +1,45 @@
+- name: Create new container with specified options
+  community.general.proxmox:
+    node: "{{ proxmox_api_node }}"
+    api_user: "{{ proxmox_api_user }}"
+    api_token_id: "{{ proxmox_api_id }}"
+    api_token_secret: "{{ proxmox_api_secret }}"
+    api_host: "{{ proxmox_api_host }}"
+    password: "{{ root_password }}"
+    hostname: "{{ inventory_hostname }}"
+    pubkey: "{{ jmp_pubkey }}"
+    ostemplate: "{{ proxmox_ostemplate }}"
+    cores: "{{ proxmox_cpu_cores }}"
+    memory: "{{ proxmox_memory }}"
+    swap: "{{ proxmox_swap }}"
+    unprivileged: "{{ proxmox_unpriviliged }}"
+    netif:
+      net0: "name=eth0,bridge=vmbr0,firewall=1,ip=dhcp,tag={{ vlan_id }},type=veth"
+    state: present
+    disk_volume:
+      storage: "{{ proxmox_storage }}"
+      size: "{{ proxmox_disk_size }}"
+  delegate_to: localhost
+
+- name: Update the container in case it exists
+  community.general.proxmox:
+    node: "{{ proxmox_api_node }}"
+    api_user: "{{ proxmox_api_user }}"
+    api_token_id: "{{ proxmox_api_id }}"
+    api_token_secret: "{{ proxmox_api_secret }}"
+    api_host: "{{ proxmox_api_host }}"
+    password: "{{ root_password }}"
+    hostname: "{{ inventory_hostname }}"
+    pubkey: "{{ jmp_pubkey }}"
+    cores: "{{ proxmox_cpu_cores }}"
+    memory: "{{ proxmox_memory }}"
+    swap: "{{ proxmox_swap }}"
+    unprivileged: "{{ proxmox_unpriviliged }}"
+    netif:
+      net0: "name=eth0,bridge=vmbr0,firewall=1,ip=dhcp,tag={{ vlan_id }},type=veth"
+    state: started
+    disk_volume:
+      storage: "{{ proxmox_storage }}"
+      size: "{{ proxmox_disk_size }}"
+    update: true
+  delegate_to: localhost
