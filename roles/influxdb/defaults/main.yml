@@ -1,0 +1,9 @@
+---
+influx_data_volume: influxdb-data
+influx_config_volume: influxdb-config
+influxdb_container_name: influxdb
+influxdb_image: influxdb
+influxdb_image_version: latest
+influxdb_port: 8086
+influxdb_username: admin
+influxdb_password: password

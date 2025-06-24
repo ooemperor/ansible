@@ -1,0 +1,26 @@
+---
+- name: Create influxdb volumes
+  community.docker.docker_volume:
+    name: "{{ item }}"
+  loop:
+    - "{{ influx_data_volume }}"
+    - "{{ influx_config_volume }}"
+
+- name: Setup influxdb in a docker container
+  community.docker.docker_container:
+    name: "{{ influxdb_container_name }}"
+    image: "{{ influxdb_image }}:{{ influxdb_image_version }}"
+    recreate: true
+    pull: true
+    ports:
+      - "{{ influxdb_port }}:8086"
+    restart_policy: unless-stopped
+    volumes:
+      - "{{ influx_data_volume }}:/var/lib/influxdb2"
+      - "{{ influx_config_volume }}:/etc/influxdb2"
+    env:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_ORG: docs
+      DOCKER_INFLUXDB_INIT_BUCKET: home
+      DOCKER_INFLUXDB_INIT_USERNAME: "{{ influxdb_username }}"
+      DOCKER_INFLUXDB_INIT_PASSWORD: "{{ influxdb_password }}"
