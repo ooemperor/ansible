@@ -1,0 +1,5 @@
+---
+cors_config_local_path: files/cors.lua
+haproxy_config_local_path: files/haproxy.cfg
+error_html_head: "<head><style>body {background-color: black;color: white;font-family: Arial, sans-serif;text-align: center;margin: 0;padding: 50px;} .logo {width: 200px;height: auto;margin-bottom: 30px;}</style></head>" # noqa: yaml[line-length]
+error_html_logo: ""
