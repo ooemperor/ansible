@@ -24,11 +24,11 @@
 - name: Copy haproxy errors files
   ansible.builtin.template:
     src: "{{ item }}"
-    dest: /etc/haproxy
+    dest: /etc/haproxy/errors
     mode: '0755'
     force: true
   with_fileglob:
-    - templates/errors/*.http.j2
+    - templates/errors/*.http
   notify: Restart haproxy
 
 - name: Check haproxy config before applying # noqa command-instead-of-shell no-changed-when
