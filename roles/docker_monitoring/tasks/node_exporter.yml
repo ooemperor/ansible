@@ -1,0 +1,15 @@
+---
+- name: Setup node exporter
+  community.docker.docker_container:
+    name: "{{ node_exporter_container_name }}"
+    image: "{{ node_exporter_image }}:{{ node_exporter_image_version }}"
+    recreate: "{{ node_exporter_recreate }}"
+    pull: "{{ node_exporter_pull }}"
+    restart_policy: "{{ node_exporter_restart_policy }}"
+    command: "--path.procfs=/host/proc --path.rootfs=/rootfs --path.sysfs=/host/sys --collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+    ports:
+      - "{{ node_exporter_port }}:9100"
+    volumes:
+      - /:/rootfs:ro
+      - /sys:/host/sys:ro
+      - /proc:/host/proc:ro
