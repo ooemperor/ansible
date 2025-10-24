@@ -1,0 +1,6 @@
+---
+- name: Setup cadvisor container for metric scraping
+  ansible.builtin.import_tasks: cadvisor.yml
+  tags:
+    - role::docker_monitoring
+    - role::cadvisor
