@@ -1,0 +1,5 @@
+---
+- name: Install and setup neo4j in docker container
+  ansible.builtin.import_tasks: neo4j_setup.yml
+  tags:
+    - 'role::neo4j'
