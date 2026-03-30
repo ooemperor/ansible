@@ -1,0 +1,12 @@
+---
+- name: Setup cadvisor container for metric scraping
+  ansible.builtin.import_tasks: cadvisor.yml
+  tags:
+    - role::docker_monitoring
+    - role::cadvisor
+
+- name: Setup node exporter for monitoring
+  ansible.builtin.import_tasks: node_exporter.yml
+  tags:
+    - role::docker_monitoring
+    - role::node_exporter

@@ -1,0 +1,20 @@
+---
+dependencies:
+  - docker
+galaxy_info:
+  author: Michael Kaiser
+  role_name: neo4j
+  description: Installation and setup of neo4j in a docker container
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - neo4j
+    - database
+    - deployment

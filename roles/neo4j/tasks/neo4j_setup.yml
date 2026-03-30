@@ -1,0 +1,21 @@
+# Installing Grafana
+- name: Create artio-relay volume
+  community.docker.docker_volume:
+    name: "{{ neo4j_volume }}"
+
+- name: Setup Grafana in a docker container
+  community.docker.docker_container:
+    name: "{{ neo4j_container_name }}"
+    image: "{{ neo4j_image }}"
+    recreate: "{{ neo4j_recreate }}"
+    pull: "{{ neo4j_pull }}"
+    ports:
+      - "{{ neo4j_http_port }}:7474" # HTTP browser interface
+      - "{{ neo4j_bolt_protocol }}:7687" # Bolt protocol
+    restart_policy: "{{ neo4j_restart_policy }}"
+    volumes:
+      - "{{ neo4j_volume }}:/data/db"
+    env:
+      NEO4J_AUTH="{{ neo4j_user | string }}/{{ neo4j_password | string }}"
+      NEO4J_server_memory_pagecache_size={{ neo4j_memory_page_cache | string }}
+      NEO4J_server_memory_heap_max__size={{ neo4j_memory_heap_max | string }}

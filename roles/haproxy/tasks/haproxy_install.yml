@@ -9,14 +9,32 @@
 
 - name: Copy lua files for haproxy
   ansible.builtin.copy:
-    src: files/cors.lua
+    src: "{{ cors_config_local_path }}"
     dest: /etc/haproxy/cors.lua
     mode: '0755'
   notify: Restart haproxy
 
 - name: Copy haproxy config files
   ansible.builtin.copy:
-    src: "../../inventories/host_files/{{ inventory_hostname }}/haproxy.cfg"
+    src: "{{ haproxy_config_local_path }}"
     dest: /etc/haproxy/haproxy.cfg
     mode: '0755'
   notify: Restart haproxy
+
+- name: Copy haproxy errors files
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: /etc/haproxy/errors
+    mode: '0755'
+    force: true
+  with_fileglob:
+    - templates/errors/*.http
+  notify: Restart haproxy
+
+- name: Check haproxy config before applying # noqa command-instead-of-shell no-changed-when
+  ansible.builtin.shell:
+    cmd: haproxy -f /etc/haproxy/haproxy.cfg -c
+  notify: Restart haproxy
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

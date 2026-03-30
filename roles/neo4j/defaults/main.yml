@@ -1,0 +1,15 @@
+neo4j_container_name: neo4j
+neo4j_image: neo4j
+neo4j_image_version: latest
+neo4j_volume: neo4j_data
+neo4j_recreate: true
+neo4j_restart_policy: unless-stopped
+neo4j_pull: true
+neo4j_user: neo4j
+neo4j_password: password
+
+neo4j_http_port: 7474
+neo4j_bolt_protocol: 7687
+
+neo4j_memory_page_cache: 2048M
+neo4j_memory_heap_max: 2048M

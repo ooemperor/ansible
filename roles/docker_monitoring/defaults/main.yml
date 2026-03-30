@@ -1,0 +1,16 @@
+---
+cadvisor_container_name: cadvisor
+cadvisor_image: gcr.io/cadvisor/cadvisor
+cadvisor_image_version: latest
+cadvisor_recreate: true
+cadvisor_restart_policy: unless-stopped
+cadvisor_pull: true
+cadvisor_port: 8090
+
+node_exporter_container_name: nodexporter
+node_exporter_image: prom/node-exporter
+node_exporter_image_version: latest
+node_exporter_recreate: true
+node_exporter_restart_policy: unless-stopped
+node_exporter_pull: true
+node_exporter_port: 9100

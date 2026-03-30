@@ -1,0 +1,13 @@
+HTTP/1.0 403 Forbidden
+Cache-Control: no-cache
+Connection: close
+Content-Type: text/html
+
+<html>
+{{ error_html_head }}
+<body>
+{{ error_html_logo | default("") }}
+<h1>403 Forbidden</h1>
+Request forbidden by administrative rules.
+</body></html>
+
